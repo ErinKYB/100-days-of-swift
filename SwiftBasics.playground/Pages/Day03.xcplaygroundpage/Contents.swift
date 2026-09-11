@@ -1,99 +1,11 @@
-//Day01
+//: [Previous](@previous)
+
+import Foundation
 import Cocoa
 
-//var greeting = "Hello, playground"
+var greeting = "Hello, playground"
 
-//var name = "Ted"
-//name = "Rebecca"
-//name = "Keeley"
-//use var only the first time and change
-
-let character = "Daphne"
-//character = "Eloise"
-//character = "Franceca"
-//you can't change constant
-
-var playerName = "Roy"
-print(playerName)
-
-playerName = "Dani"
-print(playerName)
-
-playerName = "Sam"
-print(playerName)
-
-let managerName = "Michael Scott"
-let dogBreed = "Samoyed"
-let meaningOfLife = "How many roads must a man walk down?"
-//가능한 변수보단 상수를 사용하는 것이 좋다
-
-// Day02
-// How to store truth with Booleans
-let filename = "paris.jpg"
-print(filename.hasSuffix(".jpg"))
-
-//let number = 120
-//print(number.isMultiple(of: 3))
-
-let goodDogs = true
-//let gameOver = false
-
-let isMultiple = 120.isMultiple(of: 3)
-
-var isAuthenticated = false
-isAuthenticated = !isAuthenticated
-print(isAuthenticated)
-isAuthenticated = !isAuthenticated
-print(isAuthenticated)
-
-var gameOver = false
-print(gameOver)
-
-gameOver.toggle()
-print(gameOver)
-
-// How to join strings together
-let firstPart = "Hello, "
-let secondPart = "World!"
-let greeting = firstPart + secondPart
-
-// let people = "Haters"
-// let action = "hate"
-// let lyric = people + " gonna " + action
-// print(lyric)
-
-// Int와 Double 숫자 합치면 operator overloading(연산자 오버로딩)이라고 한다.
-// `&`와 같은 연산자가 사용 방식에 따라 다른 의미를 가질 수 있다는 뜻
-// 결합되는 문자열이 많아지면 비효율적이기 떄문에 지양
-
-let luggageCode = "1" + "2" + "3" + "4" + "5"
-
-let quote = "Then he tapped a sign saying \"Believe\" and walked away."
-// 특수하게 처리할 수 있도록 큰따옴표 앞에 백슬래시를 붙이면 문자열 안에 큰따옴표를 포함할 수 있습니다.
-// 문자열 안에 백슬래시를 넣고, 그 안에 변수나 상수의 이름을 괄호 안에 넣으면 됩니다.
-
-let name = "Taylor"
-let age = 26
-let message = "Hello, my name is \(name) and I'm \(age)years old."
-print(message)
-
-// let number = 11
-// let missionMessage = "Apollo" + number + " landed on the moon."
-// 위 같은 코드는 문자열끼리, 정수끼리, 소수끼리만 더할 수 있어 불가능
-
-let number = 11
-let missionMessage = "Apollo" + String(number) + " landed on the moon"
-//그러니 문자열 보간을 쓰자
-
-print("5 x 5 is \(5 * 5)")
-
-// Summary: Simple data
-// Checkpoint 1
-let Celsius = 34.0
-let Fahrenheit = Celsius * 9.0 / 5.0 + 32.0
-print(Fahrenheit)
-
-// Day 3
+// Mark: - Day 3
 var beatles = ["John", "Paul", "George", "Ringo"]
 let numbers = [4, 8, 15, 23, 42]
 var temperatures = [25.3, 28.2, 26.4]
@@ -195,8 +107,53 @@ heights["LeBron James"] = 206
 var archEnemies = [String: String]()
 archEnemies["Batman"] = "The Joker"
 archEnemies["Batman"] = "Penguin"
-// 키 사용해 값을 다시 작성 가능 
+// 키 사용해 값을 다시 작성 가능
 
-// How to use sets for fast data lookup
-let people = Set(["Denzel Washington", "Tom Cruise", "Nicolas Cage", "Samuel L Jackson"])
-print(people)
+// Mark: - How to use sets for fast data lookup
+do{
+    //let people = Set(["Denzel Washington", "Tom Cruise", "Nicolas Cage", "Samuel L Jackson"])
+    //print(people)
+    
+    var people = Set<String>()
+    people.insert("Denzel Washington")
+    people.insert("Tom Cruise")
+    people.insert("Nicolas Cage")
+    people.insert("Samuel L Jackson")
+    
+    // insert()을 활용한다. 배열에서는 append()를 사용
+    // Set은 항목을 매우 빠르게 찾을 수 있도록 최적화도니 순서로 저장한다.
+}
+
+// Mark: - How to create and use enums
+
+    var selected = "Monday"
+    selected = "Tuesday"
+    selected = "January"
+    selected = "Friday "
+    // 공백이 있는 Friday와 없는 Friday를 다르게 인식한다. 모든 글자를 저장하지 않아도 되도록 enum(열거형)이 등장한다.
+    // 열거형을 사용하면 특정 값 범위내에서만 값을 가질 수 있는 새로운 데이터 타입을 정의할 수 있다.
+    
+    //enum Weekday{
+    //    case monday
+    //    case tuesday
+    //    case wednesday
+    //    case thursday
+    //    case friday
+    //}
+    // 문자열 대신 열거형 써보기
+    //var day = Weekday.monday
+    //day = Weekday.tuesday
+    //day = Weekday.friday
+    // 실수로 공백 추가하거나 월 이름 틀릴 일이 없어짐
+    // 열거형을 더 쉽게 사용하는 두 가지 기능
+    // 1. case 한번만 작성하고 쉼표로 구분 가능하다
+    enum Weekday{
+        case monday, tuesday, wednesday, thursday, friday
+    }
+
+// 변수나 상수에 값을 할당하면 해당 데이터 형식이 고정된다. (문자열에서 정수로 변경 불가)
+// 열거형의 경우 첫번째 할당 후에는 열거형 이름을 생략할 수 있다.
+var day = Weekday.monday
+day = .tuesday
+day = .friday
+// 열거형의 주요 장점 중 하나는 Swift가 최적화된 형태로 저장한다는 것 
